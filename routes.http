@@ -1,0 +1,8 @@
+POST  http://localhost:3000/videos
+Content-Type: application/json
+
+{
+    "title": "Video 02",
+    "description": "Esse é o Video 02",
+    "duration": 150
+}
