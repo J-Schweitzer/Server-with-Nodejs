@@ -2,7 +2,12 @@ POST  http://localhost:3000/videos
 Content-Type: application/json
 
 {
-    "title": "Video 02",
-    "description": "Esse é o Video 02",
-    "duration": 150
+    "title": "Video 01",
+    "description": "Esse é o Video 01",
+    "duration": 150,
+    "teste1": "Iniciando o testes!"
 }
+
+### 
+
+GET http://localhost:3000/videos

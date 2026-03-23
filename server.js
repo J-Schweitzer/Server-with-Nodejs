@@ -43,7 +43,9 @@ server.get('/', () => {
 })
 // listar
 server.get('/videos', () => {
-    return 'Hello Fastify'
+    const videos = database.list();
+
+    return videos;
 })
 
 
@@ -54,22 +56,15 @@ server.get('/videos', () => {
 //          -> credenciais     
 
 server.post('/videos', (request, response) => {
-
-    const {title, description, duration} = request.body
+    // const {title, description, duration} = request.body
     // console.log(body)
+
+    const {title, description, duration, Mensagem_Verdadeira} = request.body
 
     database.create({
         title: title,
         description: description,
-        duration: duration
-
-    })
-
-        database.create({
-        title,
-        description,
-        duration
-
+        duration: duration,
     })
 
     // mostrar os dados inseridos
@@ -80,12 +75,12 @@ server.post('/videos', (request, response) => {
 
 // atualizar
 server.put('/videos/:id', () => {
-    return 'Hello UCDB'
+    return 'Hello Update'
 })
 
 // remover
 server.delete('/videos/:id', () => {
-    return 'Hello Segundou'
+    return 'Hello Delete'
 })
 
 // definir a porta
