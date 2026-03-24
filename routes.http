@@ -2,12 +2,30 @@ POST  http://localhost:3000/videos
 Content-Type: application/json
 
 {
-    "title": "Video 01",
-    "description": "Esse é o Video 01",
+    "title": "Video dsdsdsd teste",
+    "description": "Esse é o 01",
     "duration": 150,
     "teste1": "Iniciando o testes!"
 }
 
 ### 
+GET http://localhost:3000/videos?search=node
+
+###
 
 GET http://localhost:3000/videos
+###
+
+PUT http://localhost:3000/videos/id
+Content-Type: application/json
+
+{
+    "title": "Video 01 - Update",
+    "description": "Esse é o Video 01 - Update",
+    "duration": 150
+}
+
+###
+
+DELETE http://localhost:3000/videos/id
+

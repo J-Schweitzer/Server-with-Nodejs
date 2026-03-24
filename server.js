@@ -42,8 +42,16 @@ server.get('/', () => {
     return 'Hello Fastify'
 })
 // listar
-server.get('/videos', () => {
-    const videos = database.list();
+server.get('/videos', (request, response) => {
+
+    // request.body                         -> dados enviados
+    // request.params                       -> parâmetros via URL
+    //http://............?token=1234        -> request.query.token
+    const search = request.query.search
+
+    console.log('Search: ', search)
+    
+    const videos = database.list(search);
 
     return videos;
 })
@@ -67,6 +75,7 @@ server.post('/videos', (request, response) => {
         duration: duration,
     })
 
+    
     // mostrar os dados inseridos
     console.log(database.list())
 
@@ -74,13 +83,29 @@ server.post('/videos', (request, response) => {
 })
 
 // atualizar
-server.put('/videos/:id', () => {
-    return 'Hello Update'
+server.put('/videos/:id', (request, response) => {
+
+    const videoID = request.params.id   // via URL -> /videos/1234
+
+    const {title, description, duration} = request.body  // via body -> JSON
+
+    const video = database.update(videoID, {
+        title: title,
+        description: description,
+        duration: duration,
+    })
+
+    return response.status(204).send('Video atualizado com sucesso!')
+
 })
 
 // remover
-server.delete('/videos/:id', () => {
-    return 'Hello Delete'
+server.delete('/videos/:id', (request, response) => {
+    const videoID = request.params.id
+
+    database.delete(videoID)
+
+    return response.status(204).send('Video removido com sucesso!')
 })
 
 // definir a porta
